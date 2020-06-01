@@ -3,7 +3,7 @@ A helpful tool to check if any projects in a directory have any un-staged, un-co
 in TypeScript with Deno.
 
 #### Installing
-`deno install --allow-run --allow-read https://github.com/elijahjcobb/git-checker/blob/master/git-checker.ts`
+`deno install --allow-run --allow-read https://raw.githubusercontent.com/elijahjcobb/git-checker/master/git-checker.ts`
 
 #### Running
 `git-checker`
