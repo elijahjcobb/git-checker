@@ -12,6 +12,8 @@ for (const path of Deno.readDirSync(cwd)) {
 
 	const newPath = cwd + "/" + path.name;
 
+	if (newPath !== "/home/elijah/Projects/git-checker") continue;
+
 	try {
 		await Deno.stat(newPath + "/.git");
 	} catch (e) {
@@ -43,6 +45,8 @@ for (const path of Deno.readDirSync(cwd)) {
 		if (msg.includes(posMsg)) {
 			console.log(`${newPath} has changes not saved.`);
 			break;
+		} else {
+			console.log(`${newPath} is clean.`);
 		}
 	}
 
