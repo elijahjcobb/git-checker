@@ -45,7 +45,7 @@ for (const path of Deno.readDirSync(cwd)) {
 		}
 	}
 
-	console.log(italic(newPath) + ": " + bold(ret === undefined ? green("clean!") : red(ret + ".")));
+	console.log(italic(path.name) + ": " + bold(ret === undefined ? green("clean!") : red(ret + ".")));
 
 }
 
