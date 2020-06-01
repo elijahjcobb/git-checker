@@ -38,16 +38,22 @@ for (const path of Deno.readDirSync(cwd)) {
 	const possibleMessages = [
 		"to be committed",
 		"not staged for commit",
-		"Untracked files"
+		"Untracked files",
+		"is ahead of"
 	]
 
+	let ret = false;
+
 	for (const posMsg of possibleMessages) {
+		console.log(posMsg);
 		if (msg.includes(posMsg)) {
-			console.log(`${newPath} has changes not saved.`);
+			ret = true;
 			break;
-		} else {
-			console.log(`${newPath} is clean.`);
 		}
+	}
+
+	if (ret) {
+		console.log(`${newPath} has changes not saved.`);
 	}
 
 
