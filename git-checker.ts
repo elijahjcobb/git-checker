@@ -5,20 +5,15 @@
  * github.com/elijahjcobb
  */
 
+import { italic, bold, red, green } from "https://deno.land/std/fmt/colors.ts";
+
 const cwd = Deno.cwd();
 
 for (const path of Deno.readDirSync(cwd)) {
+
 	if (path.isDirectory !== true) continue;
-
 	const newPath = cwd + "/" + path.name;
-
-	if (newPath !== "/home/elijah/Projects/git-checker") continue;
-
-	try {
-		await Deno.stat(newPath + "/.git");
-	} catch (e) {
-		continue;
-	}
+	try { await Deno.stat(newPath + "/.git"); } catch (e) { continue; }
 
 	const p = Deno.run({
 		cmd: ["git", "status"],
@@ -33,29 +28,24 @@ for (const path of Deno.readDirSync(cwd)) {
 	const stdout = await p.output();
 	const msg = new TextDecoder("utf8").decode(stdout);
 
-	console.log(msg);
+	const possibleMessages = {
+		"to be committed": "has staged changes that have not been committed",
+		"not staged for commit": "has changes that have not been staged",
+		"Untracked files": "has un-tracked files that have not been ignored",
+		"is ahead of": "needs to be pushed"
+	}
 
-	const possibleMessages = [
-		"to be committed",
-		"not staged for commit",
-		"Untracked files",
-		"is ahead of"
-	]
+	let ret: string | undefined = undefined;
 
-	let ret = false;
-
-	for (const posMsg of possibleMessages) {
-		console.log(posMsg);
+	for (const posMsg in possibleMessages) {
 		if (msg.includes(posMsg)) {
-			ret = true;
+			// @ts-ignore
+			ret = possibleMessages[posMsg];
 			break;
 		}
 	}
 
-	if (ret) {
-		console.log(`${newPath} has changes not saved.`);
-	}
-
+	console.log(italic(newPath) + ": " + bold(ret === undefined ? green("clean!") : red(ret + ".")));
 
 }
 
