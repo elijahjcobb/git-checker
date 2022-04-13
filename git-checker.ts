@@ -9,6 +9,8 @@ import { italic, bold, red, green } from "https://deno.land/std@0.134.0/fmt/colo
 
 const cwd = Deno.cwd();
 
+console.log(`Looking at ${cwd}/*/.git`)
+
 type Repo = {
 	safe: boolean;
 	name: string;
@@ -82,5 +84,8 @@ const sorter = (a: Repo, b: Repo): number => {
 	return a.name.localeCompare(b.name);
 }
 
+console.log(bold("\nClean Repos 🔥🔥🔥\n"))
 repos.filter(r => r.safe).sort(sorter).forEach(printRepo);
+console.log(bold("\n\Dirty Repos 😈\n"))
 repos.filter(r => !r.safe).sort(sorter).forEach(printRepo);
+console.log("\n");
