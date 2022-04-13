@@ -1,9 +1,16 @@
 # git-checker
-A helpful tool to check if any projects in a directory have any un-staged, un-committed, or not pushed files. Written
-in TypeScript with Deno.
+A helpful tool to check the status of all projects in the current working directory. This tool will check if any have
+ un-staged, un-committed, or not pushed files. Written in TypeScript with Deno.
 
 #### Installing
-`deno install --allow-run --allow-read https://raw.githubusercontent.com/elijahjcobb/git-checker/main/git-checker.ts`
+```bash
+deno install
+	--allow-run
+	--allow-read
+	https://raw.githubusercontent.com/elijahjcobb/git-checker/main/git-checker.ts
+```
+
+*If you want to run without installing, simply change* `install` *to* `run`.
 
 #### Running
 `git-checker`
