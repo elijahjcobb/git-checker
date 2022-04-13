@@ -5,7 +5,7 @@
  * github.com/elijahjcobb
  */
 
-import { italic, bold, red, green } from "https://deno.land/std@0.134.0/fmt/colors.ts";
+import { bold, red, green } from "https://deno.land/std@0.134.0/fmt/colors.ts";
 
 const cwd = Deno.cwd();
 
